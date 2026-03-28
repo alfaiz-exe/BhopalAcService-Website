@@ -1,15 +1,3 @@
-// Handle Call Click - Redirect to phone on mobile, contact page on desktop
-function handleCallClick(event) {
-  const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  
-  if (!isMobile) {
-    // On desktop, redirect to contact page
-    event.preventDefault();
-    window.location.href = 'contact.html';
-  }
-  // On mobile, let the tel: link handle it naturally
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   // Mobile Nav Toggle
   const mobileToggle = document.querySelector('.mobile-toggle');
