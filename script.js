@@ -29,22 +29,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Navbar Sticky Effect with Throttling for Performance
   const navbar = document.querySelector('.navbar');
-  let scrollTimeout;
-  let lastScrollY = 0;
-  
-  window.addEventListener('scroll', () => {
-    lastScrollY = window.scrollY;
-    if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
-    scrollTimeout = requestAnimationFrame(() => {
-      if (lastScrollY > 50) {
-        navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-        navbar.style.padding = '0.8rem 5%';
-      } else {
-        navbar.style.boxShadow = '0 4px 6px rgba(0,0,0,0.05)';
-        navbar.style.padding = '1rem 5%';
-      }
-    });
-  }, { passive: true });
+  let isScrolled = false;
+
+  const updateNavbarState = () => {
+    if (!navbar) {
+      return;
+    }
+
+    const shouldBeScrolled = window.scrollY > 50;
+
+    if (shouldBeScrolled !== isScrolled) {
+      isScrolled = shouldBeScrolled;
+      navbar.classList.toggle('scrolled', shouldBeScrolled);
+    }
+  };
+
+  window.addEventListener('scroll', updateNavbarState, { passive: true });
+  updateNavbarState();
 
   // Scroll Animation for Elements - Optimized
   const observerOptions = {
