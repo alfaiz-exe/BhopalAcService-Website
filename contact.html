@@ -10,7 +10,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+        <!-- Load main stylesheet non-blocking + small critical CSS -->
+        <style id="critical-css-contact">
+            body{font-family:Inter,system-ui, -apple-system, 'Segoe UI', Roboto, Arial; color:#1d2736; margin:0}
+            .navbar{display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:rgba(255,255,255,0.92)}
+            .contact-title{font-size:1.6rem;font-weight:800}
+            .contact-info{padding:1.5rem;background:#f7fafc;border-radius:12px}
+        </style>
+        <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="style.css"></noscript>
 </head>
 <body>
 
@@ -40,7 +48,7 @@
     <section class="section">
         <div class="contact-layout">
             <div class="contact-info">
-                <h1 class="contact-title">Contact Us - 7869588786</h1>
+                <h1 class="contact-title">Contact Us - <a href="tel:7869588786">7869588786</a></h1>
                 
                 <h3 style="margin-top: 2rem; color: var(--secondary); margin-bottom: 1rem;">24 Hour Emergency Service Available</h3>
                 <p style="color: var(--text-muted); margin-bottom: 2rem;">
@@ -52,7 +60,12 @@
                 <div class="contact-detail" style="margin-top: 3rem;">
                     <h4>Bhopal AC Service Info</h4>
                     <p>near masjid hazrat ayesha, Mayur Vihar Colony, Mayur Vihar, Bhopal, Madhya Pradesh 462023</p>
-                    <p style="margin-top: 0.5rem; font-weight: 500; color: var(--primary);">7869588786</p>
+                    <p style="margin-top: 0.5rem; font-weight: 500; color: var(--primary);">Phone: <a href="tel:7869588786">7869588786</a></p>
+
+                    <div style="display:flex; gap:1rem; margin-top:1.25rem; align-items:center; flex-wrap:wrap;">
+                        <a href="tel:7869588786" class="btn btn-primary" aria-label="Call Bhopal AC Service">Call</a>
+                        <a href="https://api.whatsapp.com/send?phone=917869588786&text=hey%20i%20want%20to%20fix%20my%20ac&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">Chat on WhatsApp</a>
+                    </div>
                 </div>
 
                 <div class="contact-detail">
@@ -74,7 +87,7 @@
                 <h4 style="margin-bottom: 1rem; color: var(--secondary);">CONTACT</h4>
                 <p><strong>Bhopal AC Service</strong></p>
                     <p>near masjid hazrat ayesha, Mayur Vihar Colony, Mayur Vihar, Bhopal, Madhya Pradesh 462023</p>
-                    <p>Phone: 7869588786</p>
+                    <p>Phone: <a href="tel:7869588786">7869588786</a></p>
             </div>
         </div>
         <div class="footer-bottom">

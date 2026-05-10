@@ -9,7 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+        <!-- Load main stylesheet non-blocking + small critical CSS -->
+        <style id="critical-css-products">
+            body{font-family:Inter,system-ui, -apple-system, 'Segoe UI', Roboto, Arial; color:#1d2736; margin:0}
+            .navbar{display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:rgba(255,255,255,0.92)}
+            .section-title{font-size:1.8rem;font-weight:800}
+        </style>
+        <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="style.css"></noscript>
 </head>
 <body>
 
@@ -51,7 +58,7 @@
                 <h4 style="margin-bottom: 1rem; color: var(--secondary);">CONTACT</h4>
                 <p><strong>Bhopal AC Service</strong></p>
                 <p>near masjid hazrat ayesha, Mayur Vihar Colony, Mayur Vihar, Bhopal, Madhya Pradesh 462023</p>
-                <p>Phone: 7869588786</p>
+                <p>Phone: <a href="tel:7869588786">7869588786</a></p>
             </div>
         </div>
         <div class="footer-bottom">

@@ -213,9 +213,7 @@ img {
   position: relative;
   height: 85vh;
   min-height: 600px;
-  background:
-    linear-gradient(140deg, rgba(7, 20, 40, 0.78) 0%, rgba(14, 77, 122, 0.58) 45%, rgba(12, 129, 154, 0.35) 100%),
-    url('https://t4.ftcdn.net/jpg/05/11/92/95/360_F_511929539_hkrzPKGI6pEA8TwUfrwrB0g73FyEaowM.jpg') center/cover no-repeat;
+  /* Background image moved to an <img> for better LCP prioritization */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -225,6 +223,18 @@ img {
   overflow: hidden;
 }
 
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  transform-origin: center;
+  filter: contrast(0.95) saturate(0.95) brightness(0.95);
+}
+
 .hero::before {
   content: '';
   position: absolute;
@@ -232,9 +242,10 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
+  /* lighter overlay to keep image clarity while preserving contrast for text */
   background:
-    radial-gradient(circle at top, rgba(14, 158, 189, 0.25), transparent 34%),
-    linear-gradient(to bottom, rgba(7, 14, 25, 0.18) 0%, rgba(7, 14, 25, 0.5) 100%);
+    radial-gradient(circle at top, rgba(14, 158, 189, 0.12), transparent 40%),
+    linear-gradient(to bottom, rgba(7, 14, 25, 0.06) 0%, rgba(7, 14, 25, 0.22) 100%);
 }
 
 .hero::after {
@@ -242,7 +253,8 @@ img {
   position: absolute;
   inset: auto 0 0;
   height: 180px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.09), transparent);
+  /* subtle bottom fade only; reduce opacity to avoid looking like blur */
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.04), transparent);
 }
 
 .hero-content {
@@ -1055,8 +1067,10 @@ img {
   }
 
   .hero-content {
-    padding: 0 1.5rem;
-  }
+    transform-origin: center;
+    /* keep image sharp — no CSS filters */
+    filter: none;
+    image-rendering: auto;
 
   .hero-tagline {
     font-size: 0.9rem;
