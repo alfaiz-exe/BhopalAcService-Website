@@ -128,50 +128,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  let staggerFrameId;
-
   const applyRowStaggerDelays = () => {
-    if (staggerFrameId) {
-      return;
-    }
+    const groups = [
+      { container: '.about-grid', item: '.about-card' },
+      { container: '.services-grid', item: '.service-item' }
+    ];
 
-    staggerFrameId = requestAnimationFrame(() => {
-      staggerFrameId = undefined;
+    groups.forEach(({ container, item }) => {
+      document.querySelectorAll(container).forEach(grid => {
+        const items = Array.from(grid.querySelectorAll(item));
 
-      const groups = [
-        { container: '.about-grid', item: '.about-card' },
-        { container: '.services-grid', item: '.service-item' }
-      ];
+        if (!items.length) {
+          return;
+        }
 
-      groups.forEach(({ container, item }) => {
-        document.querySelectorAll(container).forEach(grid => {
-          const items = Array.from(grid.querySelectorAll(item));
+        const columns = Math.max(1, getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length);
 
-          if (!items.length) {
-            return;
-          }
-
-          const template = getComputedStyle(grid).gridTemplateColumns;
-          const columns = Math.max(1, template === 'none' ? 1 : template.split(' ').length);
-
-          items.forEach((card, index) => {
-            const colIndex = index % columns;
-            card.style.setProperty('--reveal-delay', `${colIndex * 90}ms`);
-          });
+        items.forEach((card, index) => {
+          const colIndex = index % columns;
+          card.style.setProperty('--reveal-delay', `${colIndex * 90}ms`);
         });
       });
     });
   };
 
   applyRowStaggerDelays();
-
-  let staggerResizeId;
-  window.addEventListener('resize', () => {
-    window.clearTimeout(staggerResizeId);
-    staggerResizeId = window.setTimeout(() => {
-      applyRowStaggerDelays();
-    }, 140);
-  }, { passive: true });
+  window.addEventListener('resize', applyRowStaggerDelays, { passive: true });
 
   // Observe all cards and sections
   document.querySelectorAll('.about-card, .service-item, .faq-item, .section').forEach(el => {
