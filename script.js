@@ -128,32 +128,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
+  let staggerFrameId;
+
   const applyRowStaggerDelays = () => {
-    const groups = [
-      { container: '.about-grid', item: '.about-card' },
-      { container: '.services-grid', item: '.service-item' }
-    ];
+    if (staggerFrameId) {
+      return;
+    }
 
-    groups.forEach(({ container, item }) => {
-      document.querySelectorAll(container).forEach(grid => {
-        const items = Array.from(grid.querySelectorAll(item));
+    staggerFrameId = requestAnimationFrame(() => {
+      staggerFrameId = undefined;
 
-        if (!items.length) {
-          return;
-        }
+      const groups = [
+        { container: '.about-grid', item: '.about-card' },
+        { container: '.services-grid', item: '.service-item' }
+      ];
 
-        const columns = Math.max(1, getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length);
+      groups.forEach(({ container, item }) => {
+        document.querySelectorAll(container).forEach(grid => {
+          const items = Array.from(grid.querySelectorAll(item));
 
-        items.forEach((card, index) => {
-          const colIndex = index % columns;
-          card.style.setProperty('--reveal-delay', `${colIndex * 90}ms`);
+          if (!items.length) {
+            return;
+          }
+
+          const template = getComputedStyle(grid).gridTemplateColumns;
+          const columns = Math.max(1, template === 'none' ? 1 : template.split(' ').length);
+
+          items.forEach((card, index) => {
+            const colIndex = index % columns;
+            card.style.setProperty('--reveal-delay', `${colIndex * 90}ms`);
+          });
         });
       });
     });
   };
 
   applyRowStaggerDelays();
-  window.addEventListener('resize', applyRowStaggerDelays, { passive: true });
+
+  let staggerResizeId;
+  window.addEventListener('resize', () => {
+    window.clearTimeout(staggerResizeId);
+    staggerResizeId = window.setTimeout(() => {
+      applyRowStaggerDelays();
+    }, 140);
+  }, { passive: true });
 
   // Observe all cards and sections
   document.querySelectorAll('.about-card, .service-item, .faq-item, .section').forEach(el => {
