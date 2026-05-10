@@ -79,31 +79,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
-  // Service worker policy:
-  // - Disable and clean up on localhost to avoid stale-cached HTML during development.
-  // - Enable on production hosts for caching benefits.
-  const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-
-  if ('serviceWorker' in navigator) {
-    if (isLocalhost) {
-      navigator.serviceWorker.getRegistrations().then((registrations) => {
-        registrations.forEach((registration) => registration.unregister());
-      }).catch(() => {
-        // ignore cleanup errors in local dev
-      });
-
-      if ('caches' in window) {
-        caches.keys().then((keys) => {
-          keys.forEach((key) => caches.delete(key));
-        }).catch(() => {
-          // ignore cache cleanup errors in local dev
-        });
-      }
-    } else {
-      navigator.serviceWorker.register('/service-worker.js').catch(() => {
-        // swallow registration errors silently
-      });
-    }
-  }
 });

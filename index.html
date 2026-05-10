@@ -11,28 +11,9 @@
     <!-- Preconnect to image CDN and preload hero image for faster LCP -->
     <link rel="preconnect" href="https://t4.ftcdn.net" crossorigin>
     <link rel="preload" as="image" href="https://t4.ftcdn.net/jpg/05/11/92/95/360_F_511929539_hkrzPKGI6pEA8TwUfrwrB0g73FyEaowM.jpg">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-        <!-- Critical CSS (minimal) inlined to avoid render-blocking on LCP -->
-        <style id="critical-css">
-            html { -webkit-text-size-adjust: 100%; }
-            body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: #fff; color: #1d2736; margin:0; }
-            .navbar{ position: sticky; top:0; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background: rgba(255,255,255,0.92); z-index:1000; border-bottom:1px solid rgba(220,229,238,0.7); }
-            .logo{ display:inline-flex; align-items:center; justify-content:center; width:105px; height:55px; background:#0f172a; color:#fff; border-radius:50px; font-weight:800 }
-            .nav-links{ display:flex; gap:1.5rem; align-items:center }
-            .hero{ position:relative; height:85vh; min-height:420px; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; overflow:hidden }
-            .hero-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0 }
-            .hero-content{ position:relative; z-index:1; max-width:800px; padding:0 1.5rem }
-            .hero-title{ font-size:clamp(2rem,6vw,4.8rem); font-weight:800; margin:0 0 1rem }
-            .hero-tagline{ font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.75rem }
-            .btn{ display:inline-flex; align-items:center; justify-content:center; padding:0.9rem 1.8rem; border-radius:50px; font-weight:700; text-transform:uppercase; cursor:pointer }
-            .btn-primary{ background:#163b6f; color:#fff }
-            img{ display:block; max-width:100%; }
-        </style>
-
-        <!-- Load main stylesheet non-blocking -->
-        <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="style.css"></noscript>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -60,6 +41,7 @@
 
     <!-- Hero Section -->
     <header class="hero">
+        <!-- LCP-friendly background image as an <img> (easier for browsers to prioritize) -->
         <img class="hero-bg" src="https://t4.ftcdn.net/jpg/05/11/92/95/360_F_511929539_hkrzPKGI6pEA8TwUfrwrB0g73FyEaowM.jpg" alt="" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async">
         <div class="hero-content">
             <h2 class="hero-tagline">Expert AC Service & Repair</h2>
