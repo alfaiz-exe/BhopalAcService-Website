@@ -1,0 +1,31 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Bhopal AC Service logo</title>
+  <desc id="logoDesc">A professional AC service logo with cooling snowflake and BAC monogram.</desc>
+  <defs>
+    <linearGradient id="logoGradient" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#163b6f" />
+      <stop offset="1" stop-color="#0f2d5a" />
+    </linearGradient>
+    <linearGradient id="frostGradient" x1="32" y1="32" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0e9ebd" />
+      <stop offset="1" stop-color="#00d4ff" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->>
+  <rect width="128" height="128" rx="32" fill="url(#logoGradient)" />
+  <!-- Subtle inner ring -->
+  <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+  <!-- Snowflake frost element -->
+  <g opacity="0.25">
+    <line x1="64" y1="28" x2="64" y2="48" stroke="url(#frostGradient)" stroke-width="2" stroke-linecap="round" />
+    <line x1="64" y1="80" x2="64" y2="100" stroke="url(#frostGradient)" stroke-width="2" stroke-linecap="round" />
+    <line x1="28" y1="64" x2="48" y2="64" stroke="url(#frostGradient)" stroke-width="2" stroke-linecap="round" />
+    <line x1="80" y1="64" x2="100" y2="64" stroke="url(#frostGradient)" stroke-width="2" stroke-linecap="round" />
+    <line x1="36" y1="36" x2="50" y2="50" stroke="url(#frostGradient)" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="78" y1="78" x2="92" y2="92" stroke="url(#frostGradient)" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="92" y1="36" x2="78" y2="50" stroke="url(#frostGradient)" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="50" y1="78" x2="36" y2="92" stroke="url(#frostGradient)" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+  <!-- BAC Text -->
+  <text x="64" y="76" text-anchor="middle" fill="#FFFFFF" font-family="Outfit, Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="1.2">BAC</text>
+</svg>
